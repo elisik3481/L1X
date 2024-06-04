@@ -10,19 +10,12 @@ async function main() {
 
   const Token = await ethers.getContractFactory("Token");
   const initialSupply = "1000000000000000000000"; // 1000 tokens
-  // const name = "RToken";
-  // const symbol = "RT";
-  // const decimals = 18;
 
-  const token = await Token.deploy(
-    initialSupply
-    // name, symbol, decimals
-  );
+  const token = await Token.deploy(initialSupply);
 
-  //await token.waitForDeployment();
-  //await token.deployed();
+  let tx = token.deploymentTransaction();
 
-  console.log(token.hash);
+  console.log(tx.hash);
 
   console.log("Token deployed to:", await token.getAddress());
 }
